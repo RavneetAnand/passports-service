@@ -1,5 +1,5 @@
 {
-  "name": "players-service",
+  "name": "passports-service",
   "version": "1.0.0",
   "main": "src/server.js",
   "type": "module",
@@ -13,9 +13,12 @@
   },
   "author": "Ravneet",
   "license": "ISC",
-  "description": "Service players data.",
+  "description": "Service passports data.",
   "dependencies": {
+    "@aws-sdk/client-textract": "^3.525.0",
+    "aws-sdk": "^2.1572.0",
     "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql2": "^3.9.1",
