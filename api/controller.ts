@@ -14,6 +14,7 @@ let controllers = {
       res.json(data);
     } catch (err: any) {
       console.error(err.message);
+      res.status(400).send(err.message);
     }
   },
 };

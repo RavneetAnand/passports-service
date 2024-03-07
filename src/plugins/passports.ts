@@ -51,7 +51,8 @@ const getPassportDetails = async (image: any) => {
 
     return { dateOfBirth, dateOfExpiry };
   } catch (err: any) {
-    console.error('Could not fetch the passport details' + err.message);
+    console.error('Could not fetch the passport details: ' + err.message);
+    throw new Error('Could not fetch the passport details');
   }
 };
 
