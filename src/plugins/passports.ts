@@ -1,18 +1,15 @@
 import {
   AnalyzeDocumentCommand,
-  AnalyzeDocumentCommandOutput,
-  Block,
   FeatureType,
   TextractClient,
 } from '@aws-sdk/client-textract';
-import { fetchJson } from '../utils/fetchJson';
 import { getKvMap, getKvRelationship } from '../utils/imageTextHelper';
 
 /**
  * Get the passports details from the image.
  * @returns Data object list of the passports.
  */
-const getPassportDetails = async (image: any) => {
+const getPassportDetails = async (image: Uint8Array) => {
   const textractClient = new TextractClient();
   let dateOfBirth: string | undefined = undefined;
   let dateOfExpiry: string | undefined = undefined;
@@ -25,12 +22,8 @@ const getPassportDetails = async (image: any) => {
   };
 
   try {
-    /* const analyzeDoc = new AnalyzeDocumentCommand(params);
-    const response = await textractClient.send(analyzeDoc); */
-
-    const response = (await fetchJson(
-      'passport.json',
-    )) as unknown as AnalyzeDocumentCommandOutput;
+    const analyzeDoc = new AnalyzeDocumentCommand(params);
+    const response = await textractClient.send(analyzeDoc);
 
     if (!response.Blocks) {
       throw new Error('No blocks found in the response');
