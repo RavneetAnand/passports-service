@@ -42,10 +42,13 @@ const getPassportDetails = async (image: Uint8Array) => {
       }
     });
 
+    if (!dateOfBirth || !dateOfExpiry) {
+      throw new Error('Could not find the date of birth or date of expiry');
+    }
+
     return { dateOfBirth, dateOfExpiry };
   } catch (err: any) {
-    console.error('Could not fetch the passport details: ' + err.message);
-    throw new Error('Could not fetch the passport details');
+    throw new Error('Could not fetch the passport details: ' + err.message);
   }
 };
 
