@@ -4,6 +4,9 @@ import {
   TextractClient,
 } from '@aws-sdk/client-textract';
 import { getKvMap, getKvRelationship } from '../utils/imageTextHelper';
+import AWS from 'aws-sdk';
+
+AWS.config.update({ region: 'us-east-1' });
 
 /**
  * Get the passports details from the image.
