@@ -10,7 +10,10 @@ import { getKvMap, getKvRelationship } from '../utils/imageTextHelper';
  * @returns Data object list of the passports.
  */
 const getPassportDetails = async (image: Uint8Array) => {
-  const textractClient = new TextractClient();
+  const textractClient = new TextractClient({
+    region: 'us-east-1',
+  });
+
   let dateOfBirth: string | undefined = undefined;
   let dateOfExpiry: string | undefined = undefined;
 
