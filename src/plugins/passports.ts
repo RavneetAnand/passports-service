@@ -13,9 +13,7 @@ AWS.config.update({ region: 'us-east-1' });
  * @returns Data object list of the passports.
  */
 const getPassportDetails = async (image: Uint8Array) => {
-  const textractClient = new TextractClient({
-    region: 'us-east-1',
-  });
+  const textractClient = new TextractClient();
 
   let dateOfBirth: string | undefined = undefined;
   let dateOfExpiry: string | undefined = undefined;
@@ -54,7 +52,7 @@ const getPassportDetails = async (image: Uint8Array) => {
 
     return { dateOfBirth, dateOfExpiry };
   } catch (err: any) {
-    throw new Error('Could not fetch the passport details: ' + err.message);
+    throw new Error(JSON.stringify({ message: err.message }));
   }
 };
 
