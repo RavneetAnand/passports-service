@@ -8,8 +8,8 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Create a directory for the Node.js application
-mkdir -p /home/ec2-user/imageServerApp
-cd /home/ec2-user/imageServerApp
+mkdir -p /home/ec2-user/passports-service
+cd /home/ec2-user/passports-service
 
 # Assuming Node.js and npm are already installed, install the npm packages
 npm install
