@@ -11,3 +11,6 @@ nvm install --lts
 
 # Test that Node.js is installed and running correctly by typing the following at the command line.
 node -e "console.log('Running Node.js ' + process.version)"
+
+# Install the pm2
+npm install pm2 -g
