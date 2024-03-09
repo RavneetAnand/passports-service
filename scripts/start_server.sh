@@ -12,4 +12,4 @@ cd /var/www/html
 # Assuming Node.js and npm are already installed, install the npm packages
 npm install
 
-npm run start
+pm2 start npm --name "image scanner server" -- start
