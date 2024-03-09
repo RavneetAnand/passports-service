@@ -33,11 +33,14 @@ const getPassportDetails = async (image: Uint8Array) => {
       throw new Error('No blocks found in the response');
     }
 
+    // Parse the response to extract blocks of text and their relationships.
     const blocks = response.Blocks;
     const { keyMap, valueMap, blockMap } = getKvMap(blocks);
 
+    // Get the  maps of keys, values, and their relationships.
     const kvs = getKvRelationship(keyMap, valueMap, blockMap);
 
+    // Iterate over the key-value pairs to identify and extract the values for `dateOfBirth` and `dateOfExpiry`.
     Object.entries(kvs).forEach(([key, value]) => {
       if (key.toLowerCase().includes('birth')) {
         dateOfBirth = value[0];
@@ -46,6 +49,8 @@ const getPassportDetails = async (image: Uint8Array) => {
       }
     });
 
+    // If either date is not found, an error is thrown indicating the missing data.
+    // This is done to ensure that the image is of the best possible quality.
     if (!dateOfBirth || !dateOfExpiry) {
       throw new Error('Could not find the date of birth or date of expiry');
     }

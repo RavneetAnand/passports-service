@@ -24,9 +24,27 @@ passports microservice runs on Port number - 3903
 
 ## passports-service
 
+This asynchronous service endpoint extracts the date of birth and expiry date from a passport image using the AWS Textract service. Here's how it works:
+
+- **Parameters**:
+
+  - `image`: A `Uint8Array` representing the binary data of the passport image to be processed.
+
+- **Process Overview**:
+
+  1. **Initialize Textract Client**: The function sends the request to Amazon Textract and waits for the response.
+     - If the response contains no `Blocks`, an error is thrown indicating no data was found.
+     - Otherwise, it parses the response to extract blocks of text and their relationships to identify and extract the values for `dateOfBirth` and `dateOfExpiry`.
+     - If either date is not found, an error is thrown indicating the missing data.
+  2. **Return Data**:
+     - If successful, returns an object containing the extracted `dateOfBirth` and `dateOfExpiry`.
+
+- **Error Handling**:
+  - Captures and throws any errors encountered during the process, along with the error message, ensuring the caller can handle these appropriately.
+
 ### API
 
-URLs to fetch data are defined in the file api/routes.ts.
+URLs to post image is defined in the file api/routes.ts.
 
 ### `npm run test`
 
